@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Year End Countdown</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        .schedule-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .schedule-info h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .schedule-item {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .schedule-item strong {
+            color: #ffd700;
+        }
+
+        .countdowns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .countdowns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .countdown-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            animation: scaleUp 0.8s ease-out;
+        }
+
+        .countdown-box:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .countdown-box h3 {
+            color: #667eea;
+            font-size: 1.4em;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .countdown-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .countdown-unit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .countdown-unit.school-days {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.3);
+            grid-column: 1 / 3;
+            padding: 25px;
+        }
+
+        .countdown-unit.school-days .number {
+            font-size: 3em;
+        }
+
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .countdown-label {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        .countdown-date {
+            font-size: 0.95em;
+            color: #666;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .phases {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .phases h3 {
+            margin-bottom: 20px;
+            font-size: 1.4em;
+        }
+
+        .phase {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+            font-size: 1.05em;
+        }
+
+        .phase:last-child {
+            margin-bottom: 0;
+        }
+
+        .phase-name {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .phase-dates {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95em;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .countdown-box h3 {
+            animation: pulse 2s infinite;
+        }
+
+        .school-days-label {
+            font-size: 0.75em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Official Schooled Year Countdown</h1>
+            <p>Last Day of School: June 4th, 2026</p>
+        </div>
+
+        <div class="schedule-info">
+            <h2>SCHOOLED END OF YEAR SCHEDULE </h2>
+            <div class="schedule-item">
+                <strong>4th Quarter Baby:</strong> March 31, 2026 - June 4, 2026
+            </div>
+            <div class="schedule-item">
+                <strong>Countdown:</strong> May 4, 2026 - May 20, 2026
+            </div>
+            <div class="schedule-item">
+                <strong>Final Countdown:</strong> May 21, 2026 - June 4, 2026
+            </div>
+            <div class="schedule-item">
+                <strong>Total Student Days:</strong> 180 Days
+            </div>
+        </div>
+
+        <div class="countdowns">
+            <div class="countdown-box">
+                <h3>Days Until June 4th</h3>
+                <div class="countdown-display">
+                    <div class="countdown-unit">
+                        <div class="countdown-number" id="days">0</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-number" id="hours">0</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-number" id="minutes">0</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="countdown-number" id="seconds">0</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
+                </div>
+                <div class="countdown-date">Counting down to June 4th, 2026</div>
+            </div>
+
+            <div class="countdown-box">
+                <h3>School Days Remaining</h3>
+                <div class="countdown-display">
+                    <div class="countdown-unit school-days">
+                        <div class="countdown-number" id="schoolDays">0</div>
+                        <div class="countdown-label">School Days</div>
+                        <div class="school-days-label">Based on 2025-2026 Calendar</div>
+                    </div>
+                </div>
+                <div class="countdown-date">Only counts school days</div>
+            </div>
+        </div>
+
+        <div class="phases">
+            <h3>End of Year Timeline</h3>
+            <div class="phase">
+                <div class="phase-name">4th Quarter Baby</div>
+                <div class="phase-dates">March 31, 2026 - June 4, 2026</div>
+            </div>
+            <div class="phase">
+                <div class="phase-name">Countdown</div>
+                <div class="phase-dates">May 4, 2026 - May 20, 2026</div>
+            </div>
+            <div class="phase">
+                <div class="phase-name">Final Countdown</div>
+                <div class="phase-dates">May 21, 2026 - June 4, 2026</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // School days calculation based on the calendar
+        // Non-school days: Red (No School), Orange (Keystone Exams), Green (Early Dismissal), Blue (Flex/Not in Session), Gray (Last Teacher Day), Pink (Last Day is half-day)
+        
+        const nonSchoolDates = [
+            // January
+            '2026-01-01', '2026-01-02', '2026-01-19', // New Year, MLK Day
+            // February
+            '2026-02-16', // Presidents Day
+            // March
+            '2026-03-20', // Spring Break (typically)
+            // April
+            '2026-04-02', '2026-04-03', // Spring Break/Holidays
+            // May (Early Dismissals and Exams - count as school days but noted)
+            '2026-05-25', // Memorial Day
+            // June
+            '2026-06-04' // Last day (half day - counts as school day)
+        ];
+
+        // Additional non-school days from calendar (Red marked days)
+        const additionalNonSchoolDays = [
+            '2026-01-01', // Thursday Jan 1
+            '2026-01-02', // Friday Jan 2
+            '2026-01-19', // Monday Jan 19
+            '2026-02-16', // Monday Feb 16
+            '2026-04-02', // Thursday Apr 2
+            '2026-04-03', // Friday Apr 3
+            '2026-05-25'  // Monday May 25
+        ];
+
+        function calculateSchoolDays() {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            const endDate = new Date('2026-06-04');
+            endDate.setHours(0, 0, 0, 0);
+            
+            let schoolDaysCount = 0;
+            let currentDate = new Date(today);
+            
+            while (currentDate <= endDate) {
+                const dateString = currentDate.toISOString().split('T')[0];
+                const dayOfWeek = currentDate.getDay();
+                
+                // Check if it's a weekday and not a non-school day
+                if (dayOfWeek !== 0 && dayOfWeek !== 6 && !additionalNonSchoolDays.includes(dateString)) {
+                    schoolDaysCount++;
+                }
+                
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+            
+            return schoolDaysCount;
+        }
+
+        function updateCountdown() {
+            const now = new Date();
+            const endDate = new Date('2026-06-04T23:59:59').getTime();
+            const currentDate = now.getTime();
+            const difference = endDate - currentDate;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((difference / 1000 / 60) % 60);
+                const seconds = Math.floor((difference / 1000) % 60);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+
+            // Update school days
+            const schoolDays = calculateSchoolDays();
+            document.getElementById('schoolDays').textContent = schoolDays;
+        }
+
+        // Update immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
