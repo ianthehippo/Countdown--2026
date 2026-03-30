@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School End of Year Countdown - June 4th 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        .date-info {
+            font-size: 1.1em;
+            opacity: 0.9;
+            margin-top: 15px;
+        }
+
+        .countdown-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .countdown-title {
+            font-size: 2em;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .countdown-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .countdown-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .countdown-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .countdown-label {
+            font-size: 0.9em;
+            opacity: 0.95;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .school-days-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .school-days-section .countdown-item {
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        .school-days-section .countdown-title {
+            color: #f5576c;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        .info-box strong {
+            color: #667eea;
+        }
+
+        .quarter-info {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .quarter-info h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .quarter-info p {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+        }
+
+        .milestone {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid #667eea;
+        }
+
+        .milestone-date {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .milestone-text {
+            color: #555;
+            margin-left: 20px;
+        }
+
+        .final-message {
+            text-align: center;
+            color: white;
+            font-size: 1.3em;
+            margin-top: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .countdown-section {
+                padding: 25px;
+            }
+
+            .countdown-title {
+                font-size: 1.5em;
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .countdown-number {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 End of Year Countdown 🎓</h1>
+            <p>4th Quarter Baby - Spring 2026</p>
+            <div class="date-info">
+                <p>Last Day of School: <strong>June 4th, 2026</strong></p>
+            </div>
+        </div>
+
+        <!-- Quarter Information -->
+        <div class="countdown-section">
+            <div class="quarter-info">
+                <h3>📅 4th Quarter Schedule</h3>
+                <p><strong>Start Date:</strong> March 31, 2026</p>
+                <p><strong>End Date:</strong> June 4, 2026</p>
+            </div>
+        </div>
+
+        <!-- Calendar Days Countdown -->
+        <div class="countdown-section">
+            <div class="countdown-title">📆 Calendar Days Remaining</div>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">0</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+            <div class="info-box">
+                <strong>⏰ Counting down to:</strong> June 4, 2026 at 3:30 PM
+            </div>
+        </div>
+
+        <!-- School Days Countdown -->
+        <div class="countdown-section school-days-section">
+            <div class="countdown-title">🏫 School Days Remaining</div>
+            <div class="countdown-grid">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="schoolDays">42</div>
+                    <div class="countdown-label">School Days</div>
+                </div>
+            </div>
+            <div class="info-box" style="border-left-color: #f5576c; background: rgba(245, 87, 108, 0.1);">
+                <strong style="color: #f5576c;">📚 Note:</strong> This count includes only instructional days and excludes weekends and holidays. Update the school days count based on your district calendar.
+            </div>
+        </div>
+
+        <!-- Important Dates -->
+        <div class="countdown-section">
+            <div class="countdown-title">📍 Key Dates</div>
+            <div class="milestone">
+                <div class="milestone-date">05/04/26 - 05/20/26</div>
+                <div class="milestone-text">Countdown Period</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-date">05/21/26 - 06/04/26</div>
+                <div class="milestone-text">Final Countdown to Freedom! 🎉</div>
+            </div>
+            <div class="milestone">
+                <div class="milestone-date">06/04/26</div>
+                <div class="milestone-text">LAST DAY OF SCHOOL - The Final Bell! 🔔</div>
+            </div>
+        </div>
+
+        <div class="final-message">
+            You've got this! Summer is almost here! ☀️
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            // Target date: June 4, 2026 at 3:30 PM
+            const targetDate = new Date('June 4, 2026 3:30:00 PM').getTime();
+            const now = new Date().getTime();
+            const difference = targetDate - now;
+
+            // Calculate time units
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((difference / 1000 / 60) % 60);
+            const seconds = Math.floor((difference / 1000) % 60);
+
+            // Update DOM
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+
+            // If countdown is finished
+            if (difference < 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+            }
+        }
+
+        // Update countdown immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // School days countdown
+        // Replace this number with the actual count from your district calendar
+        // This is a placeholder value - you should update it based on your actual school calendar
+        const totalSchoolDays = 42; // Update this with actual school days from June 4, 2026
+        document.getElementById('schoolDays').textContent = totalSchoolDays;
+    </script>
+</body>
+</html>
